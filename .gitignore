@@ -9,7 +9,7 @@
 */package-lock.json*
 */yarn-debug.log*
 */yarn-error.log*
-
+.next/
 
 .idea/
 */.wepycache
