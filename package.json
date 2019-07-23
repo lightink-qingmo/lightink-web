@@ -1,0 +1,22 @@
+{
+  "name": "lightink-web",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "startpm2": "pm2 start ecosystem.config.js --env production"
+  },
+  "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "axios": "^0.18.0",
+    "cacheable-response": "^1.1.0",
+    "express": "^4.17.1",
+    "less": "^3.9.0",
+    "lodash": "^4.17.11",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.4"
+  },
+  "license": "ISC"
+}
