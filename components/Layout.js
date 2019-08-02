@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
+import { Container } from '@material-ui/core';
 
 import '../static/base.less'
 
@@ -33,9 +34,11 @@ class Layout extends React.Component {
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         </Head>
         <Header />
-        <div className="container">
-          { children }
-        </div>
+        <Container maxWidth="md">
+          <div className="container">
+            { children }
+          </div>
+        </Container>
         <Footer />
       </div>
     )

@@ -1,5 +1,8 @@
 import apiUtils from './apiUtils'
-
-export const A_mainPage = (rid) => {
-  return apiUtils.jsonGet(`/file/publicConfig/A_mainPage.json`, 'noLoad')
+// http://qingmo.zohar.space/book_source/repository/
+export const BookSource = (rid) => {
+  return apiUtils.commonGet(`/book_source/repository`, 'noLoad')
+}
+export const BookSourceDescription = (code) => {
+  return apiUtils.commonGet(`/book_source/description/${code}`, 'noLoad')
 }

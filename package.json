@@ -14,9 +14,13 @@
     "express": "^4.17.1",
     "less": "^3.9.0",
     "lodash": "^4.17.11",
-    "next": "^8.1.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.4"
+    "@material-ui/core": "latest",
+    "@material-ui/styles": "latest",
+    "clsx": "latest",
+    "next": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "license": "ISC"
 }

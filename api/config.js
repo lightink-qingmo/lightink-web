@@ -1,6 +1,6 @@
 const service = 'dev';
-const apiDomain = service == 'dev' ? 'https://test.yuming.com' : 'https://mobile01.yuming.com';
-const dynamicDomin = service == 'dev' ? 'https://dynamictest.yuming.com' : 'https://d1.yuming.com';
+const apiDomain = service == 'dev' ? 'http://qingmo.zohar.space' : 'http://qingmo.zohar.space';
+const dynamicDomin = service == 'dev' ? 'http://qingmo.zohar.space' : 'http://qingmo.zohar.space';
 const appMgr = service == 'dev' ? '1500' : '1080'
 
 export default  {

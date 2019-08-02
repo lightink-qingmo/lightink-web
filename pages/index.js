@@ -1,36 +1,40 @@
 import Link from 'next/link'
 // import Layout from '../'
+import { useRouter } from 'next/router';
+
 import Layout from '../components/Layout.js'
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 import {withRouter} from 'next/router'
-import {A_mainPage} from '../api/api'
+import {BookSource} from '../api/api'
 
 class Index extends React.Component {
   componentDidMount(){
   }
   static async getInitialProps() {
-    const {data}=await A_mainPage()
-    return  {InitTestData:data}
+    const {data}=await BookSource()
+    return {BookSourceArray:data} 
   }
    render(){
-     const {InitTestData} = this.props
+     const {BookSourceArray} = this.props
      return (
-      <Layout title={123}>
+      <Layout title={'青墨小说📚'}>
         <ul>
-          <li>
-            <Link href='/blog?id=first' as='/blog/first'>
-              <a>{JSON.stringify(InitTestData)}</a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/blog?id=second' as='/blog/second'>
-              <a>My second blog post111</a>
-            </Link>
-          </li>
-          <li>
-            <Link href='/blog?id=last' as='/blog/last'>
-              <a>My last blog post222</a>
-            </Link>
-          </li>
+          {
+            BookSourceArray&&BookSourceArray.map((item,index)=>{
+              return(
+                <li key={index}>
+                  <Link href={`/booksource/${item.code}`} >
+                    <a>{item.author}</a>
+                  </Link>
+                </li>
+              )
+            })
+          }
         </ul>
       </Layout>  
      )

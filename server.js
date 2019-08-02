@@ -2,7 +2,7 @@ const cacheableResponse = require('cacheable-response')
 const express = require('express')
 const next = require('next')
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = parseInt(process.env.PORT, 10) || 3333
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 
@@ -10,7 +10,7 @@ const handle = app.getRequestHandler()
 
 // Server Cache
 const ssrCache = cacheableResponse({
-  ttl: 1000 * 60 * 60, // 1hour
+  ttl: 10 * 60 * 60, // 1hour
   get: async ({ req, res, pagePath, queryParams }) => ({
     data: await app.renderToHTML(req, res, pagePath, queryParams)
   }),
