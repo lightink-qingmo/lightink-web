@@ -1,5 +1,9 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
+
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import { ServerStyleSheets } from '@material-ui/styles';
 import theme from '../src/theme';
 
@@ -22,7 +26,10 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Main />
+          <CssBaseline />
+          <Container maxWidth="sm">
+            <Main />
+          </Container>
           <NextScript />
         </body>
       </html>

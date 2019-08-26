@@ -4,7 +4,7 @@ import Layout from '../components/Layout.js'
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { useRouter,withRouter} from 'next/router';
-import {BookSourceDescription} from '../api/api'
+import {BookSourceDescription} from '../../api/api'
 
 export default class extends React.Component{
   componentDidMount() {
@@ -14,9 +14,9 @@ export default class extends React.Component{
   }
 
   static async getInitialProps() {
-    // const {data}=await BookSource()
-    // return {BookSourceArray:data} 
-    return {}
+    const {data}=await BookSource()
+    return {BookSourceArray:data} 
+    // return {}
   }
    render(){
      const {BookSourceArray} = this.props

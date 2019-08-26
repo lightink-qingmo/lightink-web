@@ -8,9 +8,11 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 
+import TextField from '@material-ui/core/TextField';
 
 import {withRouter} from 'next/router'
 import {BookSource} from '../api/api'
+import Styles from './index.less'
 
 class Index extends React.Component {
   componentDidMount(){
@@ -23,6 +25,14 @@ class Index extends React.Component {
      const {BookSourceArray} = this.props
      return (
       <Layout title={'青墨小说📚'}>
+        <TextField
+          id="standard-search"
+          label="搜索"
+          type="search"
+          className={Styles.textField}
+          margin="normal"
+        />
+        <button className={Styles.SearchBtn}>test</button>
         <ul>
           {
             BookSourceArray&&BookSourceArray.map((item,index)=>{

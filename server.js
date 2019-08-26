@@ -10,7 +10,8 @@ const handle = app.getRequestHandler()
 
 // Server Cache
 const ssrCache = cacheableResponse({
-  ttl: 10 * 60 * 60, // 1hour
+  // ttl: 10 * 60 * 60, // 1hour
+  ttl: 1, // 1hour
   get: async ({ req, res, pagePath, queryParams }) => ({
     data: await app.renderToHTML(req, res, pagePath, queryParams)
   }),
@@ -22,9 +23,9 @@ app.prepare().then(() => {
 
   server.get('/', (req, res) => ssrCache({ req, res, pagePath: '/' }))
  
-  server.get('/blog/:id', (req, res) => {
+  server.get('/booksource/:id', (req, res) => {
     const queryParams = { id: req.params.id }
-    const pagePath = '/blog'
+    const pagePath = '/booksource'
     return ssrCache({ req, res, pagePath, queryParams })
   })
 
