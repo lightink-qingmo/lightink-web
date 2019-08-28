@@ -14,9 +14,10 @@ export default class extends React.Component{
   }
 
   static async getInitialProps() {
-    const {data}=await BookSource()
-    return {BookSourceArray:data} 
-    // return {}
+    const {data}=await BookSourceDescription()
+    // console.log(data)
+    // return {BookSourceArray:data} 
+    return {}
   }
    render(){
      const {BookSourceArray} = this.props
