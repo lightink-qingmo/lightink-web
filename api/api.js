@@ -6,3 +6,7 @@ export const BookSource = (rid) => {
 export const BookSourceDescription = (code) => {
   return apiUtils.commonGet(`/book_source/description/${code}`, 'noLoad')
 }
+
+export const GetAllRepository = (code) => {
+  return apiUtils.commonGet(`/git/repository.json`, 'noLoad')
+}
