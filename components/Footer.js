@@ -6,7 +6,7 @@ const linkStyle = {
 
 const Footer = () => (
     <div>
-        Footer
+      
     </div>
 )
 

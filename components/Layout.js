@@ -33,13 +33,13 @@ class Layout extends React.Component {
           <meta charSet='utf-8' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         </Head>
-        <Header />
         <Container maxWidth="md">
+          <Header />
           <div className="container">
             { children }
           </div>
+          <Footer />
         </Container>
-        <Footer />
       </div>
     )
   }
