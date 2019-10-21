@@ -75,7 +75,7 @@ function Index({BookSourceArray}) {
             >
               {
                 BookSourceArray&&BookSourceArray.map((item,index)=>(
-                  <MenuItem value={item.index}>
+                  <MenuItem value={item.name} key={index}>
                     {item.name}
                   </MenuItem>
                 ))
