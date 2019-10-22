@@ -10,3 +10,6 @@ export const BookSourceDescription = (code) => {
 export const GetAllRepository = (code) => {
   return apiUtils.commonGet(`/git/repository.json`, 'noLoad')
 }
+export const SearchBook = ({code,name,key}) => {
+  return apiUtils.commonGet(`/${code}/${name}/search?key=${key}`, 'noLoad')
+}
