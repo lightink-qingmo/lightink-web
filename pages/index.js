@@ -20,6 +20,13 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+
 import {withRouter} from 'next/router'
 import {BookSource,GetAllRepository,SearchBook} from '../api/api'
 import Styles from './index.less'
@@ -45,6 +52,48 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const CardContain = ({cardData}) =>{
+  const classes = useStyles();
+  console.log(cardData,'cardData')
+  return (
+    <Card className={classes.card}>
+      <CardActionArea>
+        {
+          cardData&&cardData.cover&&<CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="240"
+            image={cardData&&cardData.cover||''}
+            title="Contemplative Reptile"
+          />
+        }
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            《{cardData.name}》
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {cardData.summary}
+          </Typography>
+          <Typography variant="button" display="block" gutterBottom>
+            {cardData.lastChapter}
+          </Typography>
+          <Typography variant="overline" display="block" gutterBottom>
+            作者：{cardData.author}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        {/* <Button size="small" color="primary">
+          Share
+        </Button> */}
+        <Button size="small" color="primary">
+          开始阅读
+        </Button>
+      </CardActions>
+    </Card>
+  )
+}
+
 function Index({BookSourceArray}) {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
@@ -52,17 +101,12 @@ function Index({BookSourceArray}) {
   const [repository, setreposityory] = React.useState('');
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [searchdata,setSearchdata] = React.useState([
-    {
-        "author": "荆柯守",//作者
-        "name": "人道天堂",//书名
-        "link": "/book/rendaotiantang/"//详情的连接
-    }
-  ])
+  const [searchdata,setSearchdata] = React.useState([])
   // function handleChange(event) {
   //   setValue(event.target.value);
   // }
   function handleSelectChange(event) {
+    // console.log(event.target.value.split('-')[1])
     setreposityory(event.target.value);
   }
 
@@ -78,7 +122,7 @@ function Index({BookSourceArray}) {
   }
   const GetSearchBook = async() => {
     // SearchBook()
-    const getCode = BookSourceArray.filter(item=>item.name==repository?item.code:'')[0]
+    const getCode = BookSourceArray.filter(item=>item.name.indexOf(repository)!=-1?item.code:'')[0]
     const SearchData = {
       key:Inputvalue,
       name:repository,
@@ -88,12 +132,13 @@ function Index({BookSourceArray}) {
       setLoading(true)
       try{
         const {data} = await SearchBook(SearchData)
+        setSearchdata(data)
         setLoading(false)
       }catch(e){
         
       }
     }else{
-      console.log('1111')
+      console.log(SearchData,'1111')
     }
     // console.log(SearchData,'SearchData',getCode,BookSourceArray)
   }
@@ -116,15 +161,11 @@ function Index({BookSourceArray}) {
               onOpen={handleOpen}
               value={repository}
               onChange={handleSelectChange}
-              inputProps={{
-                name: 'age',
-                id: 'demo-controlled-open-select',
-              }}
             >
               {
                 BookSourceArray&&BookSourceArray.map((item,index)=>(
-                  <MenuItem value={item.name} key={index}>
-                    {item.name}
+                  <MenuItem value={item.name.split('-')[1]} key={index}>
+                    {item.name.split('-')[1]}
                   </MenuItem>
                 ))
               }
@@ -140,6 +181,9 @@ function Index({BookSourceArray}) {
       </form>
       {
         loading&&<CircularProgress className={classes.progress} />
+      }
+      {
+        searchdata.length>0?searchdata.map((item,index)=><CardContain key={index} cardData={item}/>):''
       }
     </Layout>  
   );
