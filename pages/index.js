@@ -18,6 +18,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import {withRouter} from 'next/router'
 import {BookSource,GetAllRepository,SearchBook} from '../api/api'
 import Styles from './index.less'
@@ -38,6 +40,9 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  progress: {
+    margin: theme.spacing(2),
+  },
 }));
 
 function Index({BookSourceArray}) {
@@ -46,7 +51,14 @@ function Index({BookSourceArray}) {
   const [Inputvalue, setInputvalue] = React.useState('');
   const [repository, setreposityory] = React.useState('');
   const [open, setOpen] = React.useState(false);
-
+  const [loading, setLoading] = React.useState(false);
+  const [searchdata,setSearchdata] = React.useState([
+    {
+        "author": "荆柯守",//作者
+        "name": "人道天堂",//书名
+        "link": "/book/rendaotiantang/"//详情的连接
+    }
+  ])
   // function handleChange(event) {
   //   setValue(event.target.value);
   // }
@@ -73,8 +85,10 @@ function Index({BookSourceArray}) {
       code:getCode&&getCode['code']||''
     }
     if(SearchData['key']&&SearchData['name']&&SearchData['code']){
+      setLoading(true)
       try{
         const {data} = await SearchBook(SearchData)
+        setLoading(false)
       }catch(e){
         
       }
@@ -124,7 +138,10 @@ function Index({BookSourceArray}) {
           🔍Search
         </Button>
       </form>
-      </Layout>  
+      {
+        loading&&<CircularProgress className={classes.progress} />
+      }
+    </Layout>  
   );
 }
 Index.getInitialProps=async({ req,query})=> {
