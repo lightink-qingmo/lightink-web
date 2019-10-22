@@ -13,3 +13,6 @@ export const GetAllRepository = (code) => {
 export const SearchBook = ({code,name,key}) => {
   return apiUtils.commonGet(`/${code}/${name}/search?key=${key}`, 'noLoad')
 }
+export const GetBookDetail = (link) => {
+  return apiUtils.commonGet(`${link}`, 'noLoad')
+}

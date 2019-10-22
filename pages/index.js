@@ -26,6 +26,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 import {withRouter} from 'next/router'
 import {BookSource,GetAllRepository,SearchBook} from '../api/api'
@@ -50,6 +51,13 @@ const useStyles = makeStyles(theme => ({
   progress: {
     margin: theme.spacing(2),
   },
+  card: {
+    maxWidth: 1050,
+    marginBottom:12
+  },
+  PaperRoot: {
+    padding: theme.spacing(3, 2),
+  }
 }));
 
 const CardContain = ({cardData}) =>{
@@ -100,8 +108,8 @@ function Index({BookSourceArray}) {
   const [Inputvalue, setInputvalue] = React.useState('');
   const [repository, setreposityory] = React.useState('');
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [searchdata,setSearchdata] = React.useState([])
+  const [loading, setLoading] = React.useState(true);
+  const [searchdata,setSearchdata] = React.useState('')
   // function handleChange(event) {
   //   setValue(event.target.value);
   // }
@@ -180,10 +188,26 @@ function Index({BookSourceArray}) {
         </Button>
       </form>
       {
-        loading&&<CircularProgress className={classes.progress} />
+        loading&&<div className={Styles.flexCenter}><CircularProgress className={classes.progress} /></div>
       }
       {
-        searchdata.length>0?searchdata.map((item,index)=><CardContain key={index} cardData={item}/>):''
+        searchdata.length>0
+          ?
+        searchdata.map((item,index)=><CardContain key={index} cardData={item}/>)
+          :
+          ''
+      }
+      {
+        searchdata.length==0?
+        <div>
+          <Paper className={classes.PaperRoot}>
+            <Typography variant="h5" component="h3">
+              暂无数据，请试试其他源吧 老弟
+            </Typography>
+          </Paper>  
+        </div>
+        :
+        ''
       }
     </Layout>  
   );
