@@ -108,7 +108,7 @@ function Index({BookSourceArray}) {
   const [Inputvalue, setInputvalue] = React.useState('');
   const [repository, setreposityory] = React.useState('');
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const [searchdata,setSearchdata] = React.useState('')
   // function handleChange(event) {
   //   setValue(event.target.value);
