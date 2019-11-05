@@ -8,11 +8,13 @@ export const BookSourceDescription = (code) => {
 }
 
 export const GetAllRepository = (code) => {
-  return apiUtils.commonGet(`/git/repository.json`, 'noLoad')
+  return apiUtils.commonGet(`/git/repository.json`,'','noLoad')
+  // /1212/斋书苑/details?link=/book/19002
 }
 export const SearchBook = ({code,name,key}) => {
-  return apiUtils.commonGet(`/${code}/${name}/search?key=${key}`, 'noLoad')
+  return apiUtils.commonGet(`/${code}/${name}/search?key=${key}`,'', 'noLoad')
 }
-export const GetBookDetail = (link) => {
-  return apiUtils.commonGet(`${link}`, 'noLoad')
+export const GetBookDetail = (link,data) => {
+  console.log(link,data,'link----')
+  return apiUtils.commonGet(`/1212/斋书苑/details?link=/book/19002`, data ,'noLoad')
 }
