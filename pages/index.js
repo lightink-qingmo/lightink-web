@@ -1,4 +1,4 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 // import Layout from '../'
 import { useRouter } from 'next/router';
 
@@ -27,6 +27,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+
+import Router from 'next/router'
 
 import {withRouter} from 'next/router'
 import {BookSource,GetAllRepository,SearchBook} from '../api/api'
@@ -62,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 
 const CardContain = ({cardData}) =>{
   const classes = useStyles();
-  console.log(cardData,'cardData')
+  const preventDefault = event => event.preventDefault();
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -94,7 +96,12 @@ const CardContain = ({cardData}) =>{
         {/* <Button size="small" color="primary">
           Share
         </Button> */}
-        <Button size="small" color="primary">
+        {/* <Link href={``} onClick={preventDefault} color="inherit" className={classes.link}>
+          
+        </Link> */}
+        <Button size="small" 
+          onClick={()=>Router.push(`/noveldetail?url=${cardData.link}`)} 
+          color="primary">
           开始阅读
         </Button>
       </CardActions>
@@ -220,5 +227,5 @@ Index.getInitialProps=async({ req,query})=> {
   return {BookSourceArray:data.list} 
   // return {}
 }
-export default Index;
+export default withRouter(Index);
 

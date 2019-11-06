@@ -16,5 +16,5 @@ export const SearchBook = ({code,name,key}) => {
 }
 export const GetBookDetail = (link,data) => {
   console.log(link,data,'link----')
-  return apiUtils.commonGet(`/1212/斋书苑/details?link=/book/19002`, data ,'noLoad')
+  return apiUtils.commonGet(link, '' ,'noLoad')
 }

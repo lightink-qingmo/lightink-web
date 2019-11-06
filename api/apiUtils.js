@@ -57,7 +57,7 @@ const APIUtils = {
       //Toast.loading('正在加载...', 0, null);
     }
     return axios({
-      url: APIUtils.base+url,
+      url: `${APIUtils.base}${url}`,
       responseType: 'json',
       params:params,
       timeout: 6000,
