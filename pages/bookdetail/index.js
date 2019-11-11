@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 
 import {BookSourceDescription,GetBookDetail} from '../../api/api'
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Booksource=({cover,summary,catalogs})=>{
+const Booksource=({text})=>{
   // 声明一个叫 "count" 的 state 变量
   const router = useRouter()
   const {link} = router.query
@@ -32,28 +33,23 @@ const Booksource=({cover,summary,catalogs})=>{
 
   return (
     <Layout title={'书源仓库'}>
-      {/* {JSON.stringify(catalogs)} */}
-        {
-          catalogs.map((item,index)=>
-            <Link 
-              component="button"
-              onClick={()=>{
-                router.push(`/bookdetail?url=${item.chapterlink}`)
-              }}
-              key={index} className={classes.link}>
-              {item.chapterName}
-            </Link>
-          )
-        }
+      <Paper className={classes.root}>
+        <Typography variant="h5" component="h3">
+          This is a sheet of paper.
+        </Typography>
+        <Typography component="p" dangerouslySetInnerHTML={{__html:text}}>
+        </Typography>
+      </Paper>
     </Layout>  
   );
 }
 Booksource.getInitialProps=async({ req,query})=> {
   // const router = useRouter()
   let {url} = query
-  console.log(query,'link-----')
   // url = url.replace('http://qingmo.zohar.space','').split('?')
   url = url.replace('http://qingmo.zohar.space','')
+  // console.log(encodeURIComponent(url),'link-----')
+
   // let getUrl = url[0];
   // let getData = url[1]
   // console.log(getData,getUrl)
@@ -62,7 +58,7 @@ Booksource.getInitialProps=async({ req,query})=> {
   // console.log(router.query)
   // ?link=https://www.biyuwu.cc/html/87/87161/
   const {data}=await GetBookDetail(`${encodeURI(url)}`)
-  
+  // console.log()
   return data;
 }
 export default withRouter(Booksource);
