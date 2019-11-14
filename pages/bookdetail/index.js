@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Booksource=({text})=>{
+const Booksource=({data,chapterName})=>{
   // 声明一个叫 "count" 的 state 变量
   const router = useRouter()
   const {link} = router.query
@@ -35,9 +35,11 @@ const Booksource=({text})=>{
     <Layout title={'书源仓库'}>
       <Paper className={classes.root}>
         <Typography variant="h5" component="h3">
-          This is a sheet of paper.
+          {chapterName}
         </Typography>
-        <Typography component="p" dangerouslySetInnerHTML={{__html:text}}>
+        <Typography component="p" >
+          <div dangerouslySetInnerHTML={{__html:data.text}}>
+          </div>
         </Typography>
       </Paper>
     </Layout>  
@@ -45,20 +47,11 @@ const Booksource=({text})=>{
 }
 Booksource.getInitialProps=async({ req,query})=> {
   // const router = useRouter()
-  let {url} = query
+  let {url,chapterName} = query
   // url = url.replace('http://qingmo.zohar.space','').split('?')
   url = url.replace('http://qingmo.zohar.space','')
-  // console.log(encodeURIComponent(url),'link-----')
-
-  // let getUrl = url[0];
-  // let getData = url[1]
-  // console.log(getData,getUrl)
-
-  // const {link} = router.query
-  // console.log(router.query)
-  // ?link=https://www.biyuwu.cc/html/87/87161/
   const {data}=await GetBookDetail(`${encodeURI(url)}`)
-  // console.log()
-  return data;
+  console.log(data)
+  return {data,chapterName};
 }
 export default withRouter(Booksource);

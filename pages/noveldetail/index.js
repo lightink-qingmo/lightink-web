@@ -38,7 +38,7 @@ const Booksource=({cover,summary,catalogs})=>{
             <Link 
               component="button"
               onClick={()=>{
-                router.push(`/bookdetail?url=${item.chapterlink}`)
+                router.push(`/bookdetail?chapterName=${item.chapterName}&url=${item.chapterlink}`)
               }}
               key={index} className={classes.link}>
               {item.chapterName}
@@ -62,7 +62,7 @@ Booksource.getInitialProps=async({ req,query})=> {
   // console.log(router.query)
   // ?link=https://www.biyuwu.cc/html/87/87161/
   const {data}=await GetBookDetail(`${encodeURI(url)}`)
-  
+  console.log(data)
   return data;
 }
 export default withRouter(Booksource);
