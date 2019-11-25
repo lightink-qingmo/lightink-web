@@ -4,8 +4,11 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "startpm2": "pm2 start ecosystem.config.js --env production"
+    "start": "cross-env NODE_ENV=production node server.js",
+    "startpm2": "pm2 start ecosystem.config.js --env production",
+    "docker:build": "docker build -t light-web/next-learn .",
+    "docker:run": "docker run --rm --name next-learn -d -p 8080:3000 light-web/next-learn",
+    "docker:push": "docker push light-web/next-learn"
   },
   "dependencies": {
     "@zeit/next-less": "^1.0.1",
@@ -22,5 +25,8 @@
     "react": "latest",
     "react-dom": "latest"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^6.0.3"
+  }
 }
