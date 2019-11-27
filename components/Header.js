@@ -9,9 +9,9 @@ const Header = () => (
         <Link href="/">
           <a style={linkStyle}>首页</a>
         </Link>
-        <Link href="/about">
+        {/* <Link href="/about">
           <a style={linkStyle}>关于我们</a>
-        </Link>
+        </Link> */}
     </div>
 )
 

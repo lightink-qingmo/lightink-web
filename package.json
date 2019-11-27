@@ -1,32 +1,24 @@
 {
-  "name": "lightink-web",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js",
-    "startpm2": "pm2 start ecosystem.config.js --env production",
-    "docker:build": "docker build -t light-web/next-learn .",
-    "docker:run": "docker run --rm --name next-learn -d -p 8080:3000 light-web/next-learn",
-    "docker:push": "docker push light-web/next-learn"
-  },
+  "name": "nextjs",
+  "version": "4.0.0",
+  "private": true,
   "dependencies": {
-    "@zeit/next-less": "^1.0.1",
-    "axios": "^0.18.0",
-    "cacheable-response": "^1.1.0",
-    "express": "^4.17.1",
-    "less": "^3.9.0",
-    "lodash": "^4.17.11",
     "@material-ui/core": "latest",
-    "@material-ui/styles": "latest",
+    "@zeit/next-less": "^1.0.1",
+    "axios": "^0.19.0",
     "clsx": "latest",
+    "less": "^3.10.3",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
-  "license": "ISC",
-  "devDependencies": {
-    "cross-env": "^6.0.3"
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "docker:build": "docker build -t lightink-web/next-web .",
+    "docker:run": "docker run --rm --name next-web -d -p 8080:3000 lightink-web/next-web",
+    "docker:push": "docker push lightink-web/next-web"
   }
 }

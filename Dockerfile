@@ -33,4 +33,4 @@ RUN yarn \
 CMD ["yarn","start"]
 
 # 暴露出 3000 端口
-EXPOSE 3333
+EXPOSE 3000

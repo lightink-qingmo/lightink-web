@@ -61,8 +61,8 @@ Booksource.getInitialProps=async({ req,query})=> {
   // const {link} = router.query
   // console.log(router.query)
   // ?link=https://www.biyuwu.cc/html/87/87161/
-  const {data}=await GetBookDetail(`${encodeURI(url)}`)
+  const data = await GetBookDetail(`${encodeURI(url)}`)
   console.log(data)
-  return data;
+  return data&&data['data']||'';
 }
 export default withRouter(Booksource);
