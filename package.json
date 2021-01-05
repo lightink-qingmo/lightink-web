@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@zeit/next-less": "^1.0.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "clsx": "latest",
     "less": "^3.10.3",
     "next": "latest",
